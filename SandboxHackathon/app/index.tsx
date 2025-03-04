@@ -1,36 +1,15 @@
-import { Text, View, StyleSheet, Button, Alert } from "react-native";
-import React, { useState } from "react";
-import { ScrollView } from "react-native-gesture-handler";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { useRouter } from "expo-router";
+import { View, Button, Text } from "react-native";
 
-export default function Index() {
-  const [count, setCount] = useState(0);
+export default function HomeScreen() {
+  const router = useRouter();
+
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}> {/* ✅ Wrap everything */}
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
-        <View style={styles.container}>
-          <Text>Edit app/index.tsx to edit this screen.</Text>
-          <Button title="Increment Count" onPress={() => setCount(count + 1)} />
-          <Button title="Decrement Count" onPress={() => setCount(count - 1)} />
-          <View style={{ height: 200 }} />
-          <Text>Count: {count}</Text>
-
-        </View>
-      </ScrollView>
-    </GestureHandlerRootView>
+    <View>
+      <Text>Home Screen</Text>
+      <Button title="Go to Food" onPress={() => router.push("/Components/HomeScreen")} />
+      <Button title="Go to Workout" onPress={() => router.push("/Components/Workout/WorkoutScreen")} />
+      <Button title="Go to Nutrition" onPress={() => router.push("/Components/Nutrition/Nutrition")} />
+    </View>
   );
 }
-
-function onPress() {
-  Alert.alert("Button Pressed!");
-
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "lightblue",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
