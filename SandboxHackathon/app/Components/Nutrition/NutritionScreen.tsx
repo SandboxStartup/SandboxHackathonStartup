@@ -3,16 +3,16 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@/app/_layout";
 import { styles } from "@/app/Components/Authentication/AuthenticationStyle";
 
-type WorkoutScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Workout">;
+type NutritionScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Nutrition">;
 
-interface WorkoutScreenProps {
-    navigation: WorkoutScreenNavigationProp;
+interface NutritionScreenProps {
+    navigation: NutritionScreenNavigationProp;
 }
 
-export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
+export default function NutritionScreen({ navigation }: NutritionScreenProps) {
 
-    const handleGoToFood = () => {
-        navigation.navigate("Nutrition"); // Navigate to Nutrition screen
+    const handleGoToWorkout = () => {
+        navigation.navigate("Workout"); // Navigate to Workout screen
     };
 
     const handleGoToHome = () => {
@@ -21,10 +21,10 @@ export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Workout Screen</Text>
+            <Text style={styles.title}>Nutrition Screen</Text>
 
-            <TouchableOpacity style={styles.button} onPress={handleGoToFood}>
-                <Text style={styles.buttonText}>Go to Food</Text>
+            <TouchableOpacity style={styles.button} onPress={handleGoToWorkout}>
+                <Text style={styles.buttonText}>Go to Workout</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.button} onPress={handleGoToHome}>
