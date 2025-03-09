@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Button, ScrollView, TouchableOpacity } from "react-native";
-import { styles, theme } from "./Authentication/AuthenticationStyle";
+
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/app/_layout";
 import AppNavbar from "./AppNavbar/AppNavbar";
@@ -20,13 +20,13 @@ interface HomeScreenProps {
 }
 
 const HomeScreen = ({ navigation, route }: HomeScreenProps) => {
-    const { user } = route.params // Destructure user from route params
+    const { user } = route.params;
 
     return (
         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
             <AppNavbar navigation={navigation} />
             <View>
-                <Text>Welcome {user.name}</Text>
+                <Text>Welcome, {user.name}</Text>
                 <Text>Age: {user.age}</Text>
                 <Text>Weight: {user.weight}</Text>
                 <Text>Height: {user.height}</Text>
