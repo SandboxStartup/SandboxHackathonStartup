@@ -1,13 +1,16 @@
-export class User<T>{
+import {WorkoutPlan} from "@/app/Classes/WorkoutPlan";
+import {NutritionPlan} from "@/app/Classes/NutritionPlan";
+
+export class User{
     private _name: string;
     private _age: number;
     private _weight: number;
     private _height: number;
     private _level: string
-    private _workoutPlan: T;
-    private _nutritionPlan: string;
+    private _workoutPlan: WorkoutPlan | null;
+    private _nutritionPlan: NutritionPlan | null;
 
-    constructor(name: string, age: number, weight: number, height: number, level: string, workoutPlan: T, nutritionPlan: string){
+    constructor(name: string, age: number, weight: number, height: number, level: string, workoutPlan: WorkoutPlan | null, nutritionPlan: NutritionPlan | null){
         this._name = name;
         this._age = age;
         this._weight = weight;
@@ -58,11 +61,11 @@ export class User<T>{
         this._level = value;
     }
 
-    set workoutPlan(value: T) {
+    set workoutPlan(value: WorkoutPlan | null) {
         this._workoutPlan = value;
     }
 
-    set nutritionPlan(value: string) {
+    set nutritionPlan(value: NutritionPlan | null) {
         this._nutritionPlan = value;
     }
 }

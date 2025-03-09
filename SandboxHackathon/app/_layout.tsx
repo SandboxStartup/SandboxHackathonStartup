@@ -5,15 +5,17 @@ import LoginScreen from "./Components/Authentication/LoginScreen";
 import RegisterScreen from "./Components/Authentication/RegisterScreen";
 import App from "./App";
 import WorkoutScreen from "./Components/Workout/WorkoutScreen";
-import NutritionScreen from "./Components/Nutrition/NutritionScreen";  // The main app screen
+import NutritionScreen from "./Components/Nutrition/NutritionScreen";
+import {User} from "@/app/Classes/User";  // The main app screen
 
 export type RootStackParamList = {
   App: undefined;
-  Home: undefined;
+  Home: { user: User };
   Login: undefined;
   Register: undefined;
   Workout: undefined;
   Nutrition: undefined;
+  User: { user: User };
 };
 
 const Stack = createStackNavigator<RootStackParamList>();

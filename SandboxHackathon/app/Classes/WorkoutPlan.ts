@@ -1,28 +1,19 @@
 import {User} from "./User";
 import {Exercise} from "./Exercise";
 
-export abstract class WorkoutPlan<T> {
-    private _user: User<T>;
+export abstract class WorkoutPlan {
     private _availableEquipment: string[];
     private _exerciseMap: Map<string, Exercise[]>;
 
-    constructor(user: User<T>, availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
-        this._user = user;
+    constructor(availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
         this._availableEquipment = availableEquipment;
         this._exerciseMap = exerciseMap;
-    }
-
-    get user(){
-        return this._user;
     }
     get availableEquipment(){
         return this._availableEquipment;
     }
     get exerciseMap(){
         return this._exerciseMap;
-    }
-    set user(value: User<T>){
-        this._user = value;
     }
     set availableEquipment(value: string[]){
         this._availableEquipment = value;
@@ -32,11 +23,11 @@ export abstract class WorkoutPlan<T> {
     }
 }
 
-export class BeginnerWorkoutPlan extends WorkoutPlan<BeginnerWorkoutPlan>{
+export class BeginnerWorkoutPlan extends WorkoutPlan{
     private beginnerWorkouts: Map<string, Exercise[]>;
 
-    constructor(user: User<BeginnerWorkoutPlan>, availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
-        super(user, availableEquipment, exerciseMap);
+    constructor(availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
+        super(availableEquipment, exerciseMap);
         this.beginnerWorkouts = this.generateWorkouts();
     }
 
@@ -46,11 +37,11 @@ export class BeginnerWorkoutPlan extends WorkoutPlan<BeginnerWorkoutPlan>{
 
 }
 
-export class IntermediateWorkoutPlan extends WorkoutPlan<IntermediateWorkoutPlan>{
+export class IntermediateWorkoutPlan extends WorkoutPlan{
     private intermediateWorkouts: Map<string, Exercise[]>;
 
-    constructor(user: User<IntermediateWorkoutPlan>, availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
-        super(user, availableEquipment, exerciseMap);
+    constructor(availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
+        super(availableEquipment, exerciseMap);
         this.intermediateWorkouts = this.generateWorkouts();
     }
 
@@ -59,11 +50,11 @@ export class IntermediateWorkoutPlan extends WorkoutPlan<IntermediateWorkoutPlan
     }
 }
 
-export class AdvancedWorkoutPlan extends WorkoutPlan<AdvancedWorkoutPlan>{
+export class AdvancedWorkoutPlan extends WorkoutPlan{
     private advancedWorkouts: Map<string, Exercise[]>;
 
-    constructor(user: User<AdvancedWorkoutPlan>, availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
-        super(user, availableEquipment, exerciseMap);
+    constructor(availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
+        super(availableEquipment, exerciseMap);
         this.advancedWorkouts = this.generateWorkouts();
     }
 
