@@ -1,10 +1,9 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { NavigationContainer } from "@react-navigation/native";
 import HomeScreen from "./Components/HomeScreen";
 import LoginScreen from "./Components/Authentication/LoginScreen";
 import RegisterScreen from "./Components/Authentication/RegisterScreen";
-import App from "./app";
+import App from "./App";
 import WorkoutScreen from "./Components/Workout/WorkoutScreen";
 import NutritionScreen from "./Components/Nutrition/NutritionScreen";  // The main app screen
 

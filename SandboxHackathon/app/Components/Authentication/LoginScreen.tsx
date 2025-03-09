@@ -4,7 +4,6 @@ import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { theme, styles } from './AuthenticationStyle';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../_layout';
-// Define the props type for your LoginScreen
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
 interface LoginScreenProps {
@@ -23,7 +22,6 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
     return (
         <View style={styles.container}>
             <Text style={styles.title}>Welcome to Hack To The Future</Text>
-
             <TextInput
                 style={styles.input}
                 placeholder="Enter Username"
