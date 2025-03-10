@@ -24,26 +24,6 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
     };
 
     const handleRegister = async () => {
-        // console.log('Creating')
-        // try {
-        //     const response = await fetch('http://localhost:3000/api/createUser', {
-        //         method: 'POST',
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //         },
-        //         body: JSON.stringify({ userName, password }),
-        //     });
-        //
-        //     if (!response.ok) {
-        //         throw new Error('Network response was not ok');
-        //     }
-        //
-        //     const data = await response.json();
-        //     console.log('User created successfully:', data);
-        //     setIsAuthenticated(true);
-        // } catch (error) {
-        //     console.error('Error creating user:', error);
-        // }
         setIsAuthenticated(true);
     };
 

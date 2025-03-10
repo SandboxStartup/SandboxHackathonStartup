@@ -27,7 +27,7 @@ export default function FillUserProfile({ userName, navigation }: FillUserProfil
     const [level, setLevel] = useState("");
     const [workoutPlan, setWorkoutPlanState] = useState<WorkoutPlan | null>(null);
     const [nutritionPlan, setNutritionPlanState] = useState<NutritionPlan | null>(null);
-    const { setUser } = useUser();
+    const { setUser, user } = useUser();
 
 
 
@@ -57,10 +57,22 @@ export default function FillUserProfile({ userName, navigation }: FillUserProfil
             updateNutritionPlan();
         };
 
-        const handleSubmission = () => {
+        const handleSubmission = async () => {
             // Create user object
             // Navigate to Home screen
-            setUser(new User(name, parseInt(age), parseInt(weight), parseInt(height), level, workoutPlan, nutritionPlan));
+            const newUser = new User(name, parseInt(age), parseInt(weight), parseInt(height), level, workoutPlan, nutritionPlan);
+            setUser(newUser);
+
+            const registerResponse = await fetch('http://localhost:3000/api/createUser', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(newUser),
+            });
+            if (!registerResponse.ok) {
+                throw new Error('Network response was not ok');
+            }
 
             navigation.navigate("Home");
         }
