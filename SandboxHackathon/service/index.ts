@@ -16,7 +16,7 @@ app.post("/api/createUser", (req: any, res: any) => {
         res.status(400).send("User data is required");
         return;
     }
-    if (!user.name || !user.age || !user.weight || !user.height || !user.level) {
+    if (!user._name || !user._age || !user._weight || !user._height || !user._level) {
         res.status(400).send("User data is incomplete");
         return;
     }
