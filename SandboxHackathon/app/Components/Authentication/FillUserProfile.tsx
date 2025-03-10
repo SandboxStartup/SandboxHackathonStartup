@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import {View, TextInput, Text, Button} from "react-native";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/app/_layout";
-import {
-    AdvancedWorkoutPlan,
-    BeginnerWorkoutPlan,
-    IntermediateWorkoutPlan,
-    WorkoutPlan
-} from "@/app/Classes/WorkoutPlan";
+import {AdvancedWorkoutPlan, BeginnerWorkoutPlan, IntermediateWorkoutPlan, WorkoutPlan} from "@/app/Classes/WorkoutPlan";
 import {NutritionPlan} from "@/app/Classes/NutritionPlan";
 import {User} from "@/app/Classes/User";
+import {useUser} from "../../Hooks/UserProvider"
 
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Register">;
@@ -31,6 +27,9 @@ export default function FillUserProfile({ userName, navigation }: FillUserProfil
     const [level, setLevel] = useState("");
     const [workoutPlan, setWorkoutPlanState] = useState<WorkoutPlan | null>(null);
     const [nutritionPlan, setNutritionPlanState] = useState<NutritionPlan | null>(null);
+    const { setUser } = useUser();
+
+
 
 
     const updateWorkoutPlan = (level: string) => {
@@ -61,8 +60,9 @@ export default function FillUserProfile({ userName, navigation }: FillUserProfil
         const handleSubmission = () => {
             // Create user object
             // Navigate to Home screen
-            let user = new User(name, parseInt(age), parseInt(weight), parseInt(height), level, workoutPlan, nutritionPlan);
-            navigation.navigate("Home", { user: user });
+            setUser(new User(name, parseInt(age), parseInt(weight), parseInt(height), level, workoutPlan, nutritionPlan));
+
+            navigation.navigate("Home");
         }
 
         return (

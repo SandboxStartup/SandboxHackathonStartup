@@ -2,6 +2,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@/app/_layout";
 import { styles } from "@/app/Components/Authentication/AuthenticationStyle";
+import {useUser} from "@/app/Hooks/UserProvider";
 
 type NutritionScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Nutrition">;
 
@@ -11,12 +12,20 @@ interface NutritionScreenProps {
 
 export default function NutritionScreen({ navigation }: NutritionScreenProps) {
 
+    const {setIsAuthenticated} = useUser();
+
+
     const handleGoToWorkout = () => {
         navigation.navigate("Workout"); // Navigate to Workout screen
     };
 
     const handleGoToHome = () => {
         navigation.navigate("Home"); // Navigate to Home screen
+    };
+
+    const handleLogout = () => {
+        setIsAuthenticated(false);
+        navigation.navigate("App")
     };
 
     return (
@@ -29,6 +38,10 @@ export default function NutritionScreen({ navigation }: NutritionScreenProps) {
 
             <TouchableOpacity style={styles.button} onPress={handleGoToHome}>
                 <Text style={styles.buttonText}>Go to Home</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={styles.button} onPress={handleLogout}>
+                <Text style={styles.buttonText}>Logout</Text>
             </TouchableOpacity>
         </View>
     );

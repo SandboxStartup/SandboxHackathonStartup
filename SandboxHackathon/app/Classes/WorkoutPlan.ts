@@ -21,6 +21,10 @@ export abstract class WorkoutPlan {
     set exerciseMap(value: Map<string, Exercise[]>){
         this._exerciseMap = value;
     }
+
+    abstract getListWorkouts(): Map<string, Exercise[]>;
+
+    abstract generateWorkouts(): Map<string, Exercise[]>;
 }
 
 export class BeginnerWorkoutPlan extends WorkoutPlan{
@@ -28,24 +32,32 @@ export class BeginnerWorkoutPlan extends WorkoutPlan{
 
     constructor(availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
         super(availableEquipment, exerciseMap);
-        this.beginnerWorkouts = this.generateWorkouts();
+        this.beginnerWorkouts = this.getListWorkouts();
     }
 
     generateWorkouts(){
         return new Map<string, Exercise[]>();
     }
 
-}
-
-export class IntermediateWorkoutPlan extends WorkoutPlan{
-    private intermediateWorkouts: Map<string, Exercise[]>;
-
-    constructor(availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
-        super(availableEquipment, exerciseMap);
-        this.intermediateWorkouts = this.generateWorkouts();
+    getListWorkouts(){
+        return new Map<string, Exercise[]>();
     }
 
-    generateWorkouts(){
+}
+
+export class IntermediateWorkoutPlan extends WorkoutPlan {
+    private intermediateWorkouts: Map<string, Exercise[]>;
+
+    constructor(availableEquipment: string[], exerciseMap: Map<string, Exercise[]>) {
+        super(availableEquipment, exerciseMap);
+        this.intermediateWorkouts = this.getListWorkouts();
+    }
+
+    generateWorkouts() {
+        return new Map<string, Exercise[]>();
+    }
+
+    getListWorkouts() {
         return new Map<string, Exercise[]>();
     }
 }
@@ -55,10 +67,14 @@ export class AdvancedWorkoutPlan extends WorkoutPlan{
 
     constructor(availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
         super(availableEquipment, exerciseMap);
-        this.advancedWorkouts = this.generateWorkouts();
+        this.advancedWorkouts = this.getListWorkouts();
     }
 
     generateWorkouts(){
+        return new Map<string, Exercise[]>();
+    }
+
+    getListWorkouts(){
         return new Map<string, Exercise[]>();
     }
 }

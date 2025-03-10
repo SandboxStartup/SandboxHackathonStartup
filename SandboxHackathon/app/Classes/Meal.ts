@@ -1,9 +1,11 @@
+import {Macro} from "@/app/Classes/Macro";
+
 export class Meal{
     private _name: string;
-    private _ingredients: Map<string, number>[];
+    private _ingredients: Map<string, Macro>[];
     private _instructions: string[];
 
-    constructor(name: string, ingredients: Map<string, number>[], instructions: string[]){
+    constructor(name: string, ingredients: Map<string, Macro>[], instructions: string[]){
         this._name = name;
         this._ingredients = ingredients;
         this._instructions = instructions;
@@ -18,11 +20,11 @@ export class Meal{
         this._name = value;
     }
 
-    get ingredients(): Map<string, number>[] {
+    get ingredients(): Map<string, Macro>[] {
         return this._ingredients;
     }
 
-    set ingredients(value: Map<string, number>[]) {
+    set ingredients(value: Map<string, Macro>[]) {
         this._ingredients = value;
     }
 
