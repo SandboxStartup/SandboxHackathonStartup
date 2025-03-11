@@ -10,7 +10,7 @@ import {User} from "@/app/Classes/User";  // The main app screen
 
 export type RootStackParamList = {
   App: undefined;
-  Home: { user: User };
+  Home: undefined;
   Login: undefined;
   Register: undefined;
   Workout: undefined;
