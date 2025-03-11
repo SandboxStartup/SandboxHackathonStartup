@@ -2,7 +2,7 @@ import {WorkoutPlan} from "@/app/Classes/WorkoutPlan";
 import {NutritionPlan} from "@/app/Classes/NutritionPlan";
 
 export class User{
-    private _name: string;
+    public _name: string;
     private _age: number;
     private _weight: number;
     private _height: number;
@@ -20,7 +20,7 @@ export class User{
         this._nutritionPlan = nutritionPlan;
     }
 
-    get name(){
+    public get name(): string {
         return this._name;
     }
     get age(){
@@ -35,13 +35,13 @@ export class User{
     get level(){
         return this._level;
     }
-    get workout(){
+    get workoutPlan(){
         return this._workoutPlan;
     }
-    get nutrition(){
+    get nutritionPlan(){
         return this._nutritionPlan;
     }
-    set name(value: string) {
+    set __name(value: string) {
         this._name = value;
     }
 
