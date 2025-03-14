@@ -1,5 +1,9 @@
+import React, { useState } from "react";
+import { View, Text, Button, ScrollView, TouchableOpacity, TextInput } from "react-native";
+import { styles, theme } from "@/app/Components/Authentication/AuthenticationStyle";
+import {NativeStackNavigationProp} from "@react-navigation/native-stack";
+import {RootStackParamList} from "@/app/_layout";
 import React, { useEffect } from "react";
-import { View, Text, ScrollView, Button, TextInput } from "react-native";
 import AppNavbar from "./AppNavbar/AppNavbar";
 import { useUser } from "../Hooks/UserProvider";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -50,11 +54,20 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         }
     };
 
-    useEffect(() => {
-        if (!isAuthenticated || user === null) {
-            navigation.navigate("App");
-        }
-    }, [isAuthenticated, user]);
+    if (!user) {
+        return (
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+                <AppNavbar navigation={navigation} />
+                <View>
+                    <Text>Welcome, Guest</Text>
+                </View>
+            </ScrollView>
+        );
+    }
+
+    return (
+        <View>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
 
     return (
         <ScrollView>
@@ -76,6 +89,8 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                 <TextInput placeholder="Enter Weight" keyboardType="default" onChangeText={(text) => updateWeight(text)} />
             </View>
         </ScrollView>
+        </View>
+        
     );
 };
 

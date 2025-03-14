@@ -1,7 +1,10 @@
-import React, { useState } from "react";
+
 import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@/app/_layout";
+import { styles } from "@/app/Components/Authentication/AuthenticationStyle";
+import AppNavBar from "../AppNavbar/AppNavbar";
+import React, { useState } from "react";
 import { useUser } from "@/app/Hooks/UserProvider";
 import { Meal } from "@/app/Classes/Meal";
 import {Calorie, Gram, Macro, Milligram} from "@/app/Classes/Macro";
@@ -132,5 +135,21 @@ function MealPlanDisplay({ mealPlan, onBack }: { mealPlan: Map<string, Meal[]>; 
                 <Text>Back</Text>
             </TouchableOpacity>
         </View>
+
+
+       
     );
 }
+
+
+{/* <View style={styles.container}>
+<Text style={styles.title}>Nutrition Screen</Text>
+
+<TouchableOpacity style={styles.button} onPress={handleGoToWorkout}>
+    <Text style={styles.buttonText}>Go to Workout</Text>
+</TouchableOpacity>
+
+<TouchableOpacity style={styles.button} onPress={handleGoToHome}>
+    <Text style={styles.buttonText}>Go to Home</Text>
+</TouchableOpacity>
+</View> */}

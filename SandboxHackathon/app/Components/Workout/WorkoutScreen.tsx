@@ -1,3 +1,6 @@
+import { styles } from "@/app/Components/Authentication/AuthenticationStyle";
+import AppNavBar from "../AppNavbar/AppNavbar";
+import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 import React, { useState } from "react";
 import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -5,10 +8,12 @@ import { RootStackParamList } from "@/app/_layout";
 import { useUser } from "@/app/Hooks/UserProvider";
 import { Exercise } from "@/app/Classes/Exercise";
 
-type WorkoutScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Workout">;
+// type WorkoutScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Workout">;
+type WorkoutScreenNavigationProp = BottomTabNavigationProp<RootStackParamList, "Workout">;
 
 interface WorkoutScreenProps {
     navigation: WorkoutScreenNavigationProp;
+    // navigation: BottomTabNavigationProp<RootStackParamList>;
 }
 
 export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
