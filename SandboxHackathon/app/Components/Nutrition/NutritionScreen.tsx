@@ -111,8 +111,10 @@ function calculateTotalMacros(meal: Meal): Macro {
     return total;
 }
 
-function MealPlanDisplay({ mealPlan, onBack }: { mealPlan: Map<string, Meal[]>; onBack: () => void }) {
+function MealPlanDisplay({ mealPlan, onBack }: { mealPlan: Map<string, Meal[]>; onBack: () => void }, {navigation}: NutritionScreenProps) {
     return (
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+        <AppNavBar navigation={navigation} />
         <View>
             <Text>Your Meal Plan</Text>
             <ScrollView>
@@ -139,6 +141,7 @@ function MealPlanDisplay({ mealPlan, onBack }: { mealPlan: Map<string, Meal[]>; 
                 <Text>Back</Text>
             </TouchableOpacity>
         </View>
+        </ScrollView>
 
 
        
