@@ -1,3 +1,4 @@
+import React from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "./_layout"; // Assuming types are in a separate file
