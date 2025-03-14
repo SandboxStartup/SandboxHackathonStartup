@@ -1,11 +1,12 @@
 // LoginScreen.tsx
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { theme, styles } from './AuthenticationStyle';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../_layout';
 import {useUser} from "@/app/Hooks/UserProvider";
-import FillUserProfile from "@/app/Components/Authentication/FillUserProfile";
+import {User} from "@/app/Classes/User";
+
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
 interface LoginScreenProps {
@@ -22,16 +23,44 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         setShowPassword(!showPassword);
     };
 
-    const handleLogin = () => {
-        // Handle login logic her
-        if (!user){
-        alert(userName + " is not a registered user. Please register first.");
-        navigation.navigate("Register");
-        }
-        else{
-            setIsAuthenticated(true);
+    useEffect(() => {
+        if (isAuthenticated) {
             navigation.navigate("Home");
         }
+    }, [isAuthenticated]);
+
+    const handleLogin = async () => {
+
+            const loginResponse = await fetch('http://localhost:3000/api/login/user', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userName, password }), // Send data correctly
+            });
+
+            if (!loginResponse.ok) {
+                setIsAuthenticated(false);
+                alert("Invalid username or password");
+                navigation.navigate("Register");
+                return;
+            }
+            else{
+                const userObject = await loginResponse.json(); // Parse JSON response
+                const newUser = new User(
+                    userObject._name,
+                    userObject._age,
+                    userObject._weight,
+                    userObject._height,
+                    userObject._level,
+                    userObject._workoutPlan,
+                    userObject._nutritionPlan
+                );
+
+                setUser(newUser);
+                setIsAuthenticated(true);
+            }
+
     }
 
     if (isAuthenticated && !user) {

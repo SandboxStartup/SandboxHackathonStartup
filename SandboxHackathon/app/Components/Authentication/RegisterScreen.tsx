@@ -28,7 +28,7 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
     };
 
     if (isAuthenticated) {
-        return <FillUserProfile userName={userName} navigation={navigation} />;
+        return <FillUserProfile userName={userName} userPassword={password} navigation={navigation} />;
     }
     else {
 
