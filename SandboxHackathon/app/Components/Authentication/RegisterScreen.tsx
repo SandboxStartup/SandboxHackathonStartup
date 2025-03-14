@@ -5,6 +5,7 @@ import { theme, styles } from "./AuthenticationStyle";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/app/_layout";
 import FillUserProfile from "./FillUserProfile";
+import {useUser} from "@/app/Hooks/UserProvider";
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Register">;
 
@@ -16,19 +17,18 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
     const [userName, setUserName] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [isRegistered, setIsRegistered] = useState(false);
+    const {isAuthenticated, setIsAuthenticated} = useUser();
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
     };
 
-    const handleRegister = () => {
-        // Handle registration logic here// Navigate to Home screen
-        setIsRegistered(true);
+    const handleRegister = async () => {
+        setIsAuthenticated(true);
     };
 
-    if (isRegistered) {
-        return <FillUserProfile userName={userName} navigation={navigation} />;
+    if (isAuthenticated) {
+        return <FillUserProfile userName={userName} userPassword={password} navigation={navigation} />;
     }
     else {
 

@@ -6,7 +6,8 @@ import RegisterScreen from "./Components/Authentication/RegisterScreen";
 import App from "./App";
 import WorkoutScreen from "./Components/Workout/WorkoutScreen";
 import NutritionScreen from "./Components/Nutrition/NutritionScreen";
-import {User} from "@/app/Classes/User";  // The main app screen
+import {User} from "@/app/Classes/User";
+import {UserProvider, useUser} from "@/app/Hooks/UserProvider";  // The main app screen
 
 export type RootStackParamList = {
   App: undefined;
@@ -22,8 +23,8 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 export default function RootLayout() {
   return (
-
-        <Stack.Navigator initialRouteName="App" screenOptions={{ headerShown: false }}>
+      <UserProvider>
+        <Stack.Navigator initialRouteName="App">
           <Stack.Screen name="App" component={App} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
@@ -31,5 +32,6 @@ export default function RootLayout() {
           <Stack.Screen name="Workout" component={WorkoutScreen}/>
           <Stack.Screen name="Nutrition" component={NutritionScreen}/>
         </Stack.Navigator>
+      </UserProvider>
   );
 }

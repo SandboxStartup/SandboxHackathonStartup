@@ -1,15 +1,11 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import {View, TextInput, Text, Button} from "react-native";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/app/_layout";
-import {
-    AdvancedWorkoutPlan,
-    BeginnerWorkoutPlan,
-    IntermediateWorkoutPlan,
-    WorkoutPlan
-} from "@/app/Classes/WorkoutPlan";
+import {AdvancedWorkoutPlan, BeginnerWorkoutPlan, IntermediateWorkoutPlan, WorkoutPlan} from "@/app/Classes/WorkoutPlan";
 import {NutritionPlan} from "@/app/Classes/NutritionPlan";
 import {User} from "@/app/Classes/User";
+import {useUser} from "../../Hooks/UserProvider"
 
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Register">;
@@ -19,18 +15,24 @@ interface RegisterScreenProps {
 }
 type FillUserProfileProps = {
     userName: string;
+    userPassword: string;
     navigation: NativeStackNavigationProp<RootStackParamList, "Register">;
+
 };
 
-export default function FillUserProfile({ userName, navigation }: FillUserProfileProps) {
+export default function FillUserProfile({ userName,userPassword, navigation }: FillUserProfileProps) {
     // State variables for user input
     const [name, setName] = useState(userName);
     const [age, setAge] = useState("");
     const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
     const [level, setLevel] = useState("");
+    const [password, setPassword] = useState(userPassword);
     const [workoutPlan, setWorkoutPlanState] = useState<WorkoutPlan | null>(null);
     const [nutritionPlan, setNutritionPlanState] = useState<NutritionPlan | null>(null);
+    const { setUser, user } = useUser();
+
+
 
 
     const updateWorkoutPlan = (level: string) => {
@@ -41,11 +43,14 @@ export default function FillUserProfile({ userName, navigation }: FillUserProfil
         } else if (level === "Advanced") {
             setWorkoutPlanState(new AdvancedWorkoutPlan([], new Map()));
         }
+        else{
+            alert("Invalid level. Please enter Beginner, Intermediate, or Advanced.");
+        }
     };
 
     // Update nutrition plan
     const updateNutritionPlan = () => {
-        setNutritionPlanState(new NutritionPlan([]));
+        setNutritionPlanState(new NutritionPlan(new Map()));
     };
 
         // Function to handle input changes
@@ -54,18 +59,52 @@ export default function FillUserProfile({ userName, navigation }: FillUserProfil
             else if (field === "weight") setWeight(value);
             else if (field === "height") setHeight(value);
             else if (field === "level") setLevel(value);
-            updateWorkoutPlan(level);
-            updateNutritionPlan();
         };
 
-        const handleSubmission = () => {
-            // Create user object
-            // Navigate to Home screen
-            let user = new User(name, parseInt(age), parseInt(weight), parseInt(height), level, workoutPlan, nutritionPlan);
-            navigation.navigate("Home", { user: user });
+    const handleSubmission = async () => {
+        if (!["Beginner", "Intermediate", "Advanced"].includes(level)) {
+            alert("Invalid level. Please enter Beginner, Intermediate, or Advanced.");
+            return;
         }
 
-        return (
+        let selectedWorkoutPlan: WorkoutPlan | null = null;
+        if (level === "Beginner") {
+            selectedWorkoutPlan = new BeginnerWorkoutPlan([], new Map());
+        } else if (level === "Intermediate") {
+            selectedWorkoutPlan = new IntermediateWorkoutPlan([], new Map());
+        } else if (level === "Advanced") {
+            selectedWorkoutPlan = new AdvancedWorkoutPlan([], new Map());
+        }
+
+        const selectedNutritionPlan = new NutritionPlan(new Map());
+
+        const newUser = new User(name, parseInt(age), parseInt(weight), parseInt(height), level, selectedWorkoutPlan, selectedNutritionPlan);
+        setUser(newUser);
+
+        const registerResponse = await fetch('http://192.168.86.25:3000/api/createUser', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({...newUser, _password: password}), // Send data correctly
+        });
+
+        if (!registerResponse.ok) {
+            if (registerResponse.status === 401) {
+                alert("User data is incomplete");
+            } else if (registerResponse.status === 400) {
+                alert("User already exists login instead");
+                navigation.navigate("Login");
+            }
+        } else {
+
+            navigation.navigate("Home");
+        }
+    }
+
+
+
+    return (
             <View style={{padding: 20}}>
                 <Text>Enter Your Age:</Text>
                 <TextInput

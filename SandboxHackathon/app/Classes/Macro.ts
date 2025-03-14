@@ -85,56 +85,42 @@ export class Macro{
     }
 }
 
-export class Gram{
-    private _tag: string = "g";
-    private _value: number;
+class Unit {
+    protected _tag: string;
+    protected _value: number;
 
-    constructor(value: number){
+    constructor(value: number, tag: string) {
         this._value = value;
+        this._tag = tag;
     }
-    get tag(){
+
+    get tag() {
         return this._tag;
     }
-    get value(){
+
+    get value() {
         return this._value;
     }
-    set value(value: number){
+
+    set value(value: number) {
         this._value = value;
     }
 }
 
-export class Milligram{
-    private _tag: string = "mg";
-    private _value: number;
-
-    constructor(value: number){
-        this._value = value;
-    }
-    get tag(){
-        return this._tag;
-    }
-    get value(){
-        return this._value;
-    }
-    set value(value: number){
-        this._value = value;
+export class Gram extends Unit {
+    constructor(value: number) {
+        super(value, "g");
     }
 }
 
-export class Calorie{
-    private _tag: string = "cal";
-    private _value: number;
+export class Milligram extends Unit {
+    constructor(value: number) {
+        super(value, "mg");
+    }
+}
 
-    constructor(value: number){
-        this._value = value;
-    }
-    get tag(){
-        return this._tag;
-    }
-    get value(){
-        return this._value;
-    }
-    set value(value: number){
-        this._value = value;
+export class Calorie extends Unit {
+    constructor(value: number) {
+        super(value, "cal");
     }
 }

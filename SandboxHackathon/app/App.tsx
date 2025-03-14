@@ -22,6 +22,7 @@ type AppScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
 
 interface AppScreenProps {
     navigation: AppScreenNavigationProp;
+
 }
 
 const AppScreen = ({ navigation }: AppScreenProps) => {
