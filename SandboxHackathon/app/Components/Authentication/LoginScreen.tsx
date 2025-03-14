@@ -1,12 +1,12 @@
 // LoginScreen.tsx
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Text, TextInput, View, TouchableOpacity } from 'react-native';
 import { theme, styles } from './AuthenticationStyle';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../_layout';
 import {useUser} from "@/app/Hooks/UserProvider";
-import FillUserProfile from "@/app/Components/Authentication/FillUserProfile";
 import {User} from "@/app/Classes/User";
+
 type LoginScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, 'Login'>;
 
 interface LoginScreenProps {
@@ -23,9 +23,15 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         setShowPassword(!showPassword);
     };
 
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigation.navigate("Home");
+        }
+    }, [isAuthenticated]);
+
     const handleLogin = async () => {
 
-            const loginResponse = await fetch('http://192.168.86.25:3000/api/auth/user', {
+            const loginResponse = await fetch('http://localhost:3000/api/login/user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,35 +39,26 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
                 body: JSON.stringify({ userName, password }), // Send data correctly
             });
 
-            const responseText = await loginResponse.text(); // Get response text
-
             if (!loginResponse.ok) {
                 setIsAuthenticated(false);
+                alert("Invalid username or password");
                 navigation.navigate("Register");
                 return;
             }
             else{
-                const userData = JSON.parse(responseText);
+                const userObject = await loginResponse.json(); // Parse JSON response
                 const newUser = new User(
-                    userData.name,
-                    userData.age,
-                    userData.weight,
-                    userData.height,
-                    userData.level,
-                    userData.workoutPlan,
-                    userData.nutritionPlan
+                    userObject._name,
+                    userObject._age,
+                    userObject._weight,
+                    userObject._height,
+                    userObject._level,
+                    userObject._workoutPlan,
+                    userObject._nutritionPlan
                 );
-                if (newUser === null) {
-                    console.log(newUser)
-                    setIsAuthenticated(false);
-                    navigation.navigate("Register");
-                    return;
-                }
-                else {
-                    setUser(newUser);
-                    setIsAuthenticated(true);
-                    navigation.navigate("Home");
-                }
+
+                setUser(newUser);
+                setIsAuthenticated(true);
             }
 
     }

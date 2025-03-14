@@ -1,62 +1,79 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, ScrollView, ActivityIndicator } from "react-native";
+import React, { useEffect } from "react";
+import { View, Text, ScrollView, Button, TextInput } from "react-native";
 import AppNavbar from "./AppNavbar/AppNavbar";
 import { useUser } from "../Hooks/UserProvider";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../_layout";
-// Other imports...
-
-type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Home">;
+import { AdvancedWorkoutPlan, BeginnerWorkoutPlan, IntermediateWorkoutPlan } from "@/app/Classes/WorkoutPlan";
 
 interface HomeScreenProps {
-    navigation: HomeScreenNavigationProp;
+    navigation: NativeStackNavigationProp<RootStackParamList, "Home">;
 }
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
     const { user, isAuthenticated, setUser } = useUser();
-    const [name, setName] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true); // Add a loading state
+
+    const updateWorkoutLevel = (level: string) => {
+        if (user) {
+            let newWorkoutPlan;
+
+            switch (level) {
+                case "Beginner":
+                    newWorkoutPlan = new BeginnerWorkoutPlan([], new Map());
+                    break;
+                case "Intermediate":
+                    newWorkoutPlan = new IntermediateWorkoutPlan([], new Map());
+                    break;
+                case "Advanced":
+                    newWorkoutPlan = new AdvancedWorkoutPlan([], new Map());
+                    break;
+                default:
+                    newWorkoutPlan = user.workoutPlan;
+            }
+
+            const updatedUser = Object.assign(
+                Object.create(Object.getPrototypeOf(user)),
+                user,
+                { level, workoutPlan: newWorkoutPlan }
+            );
+
+            setUser(updatedUser);
+        }
+    };
+
+    const updateWeight = (sweight: string) => {
+        let weight = parseInt(sweight);
+        if (user) {
+            user.weight = weight;
+            const updatedUser = Object.assign(Object.create(Object.getPrototypeOf(user)), user, { weight });
+            setUser(updatedUser);
+        }
+    };
 
     useEffect(() => {
         if (!isAuthenticated || user === null) {
             navigation.navigate("App");
-        } else {
-            setUser(user);
-            setName(user._name);
-            setLoading(false); // Set loading to false when data is available
         }
-    }, [isAuthenticated, user, navigation]);
-
+    }, [isAuthenticated, user]);
 
     return (
-        <ScrollView style={{ flex: 1, padding: 20, backgroundColor: "#f8f9fa" }}>
+        <ScrollView>
             <AppNavbar navigation={navigation} />
-
-            <View style={{ alignItems: "center", marginTop: 20 }}>
-                <Text style={{ fontSize: 24, fontWeight: "bold", marginBottom: 10 }}>
-                    Welcome {user!.name}!
-                </Text>
+            <View>
+                <Text>Welcome {user?.name}!</Text>
             </View>
-
-            <View
-                style={{
-                    backgroundColor: "white",
-                    padding: 20,
-                    borderRadius: 10,
-                    shadowColor: "#000",
-                    shadowOffset: { width: 0, height: 2 },
-                    shadowOpacity: 0.1,
-                    shadowRadius: 5,
-                    elevation: 5,
-                    marginVertical: 10,
-                }}
-            >
-                <Text style={{ fontSize: 18, fontWeight: "600", marginBottom: 5 }}>User Details:</Text>
-                <Text style={{ fontSize: 16 }}>👤 Name: {user!.name}</Text>
-                <Text style={{ fontSize: 16 }}>🎂 Age: {user!.age}</Text>
-                <Text style={{ fontSize: 16 }}>⚖️ Weight: {user!.weight} lbs</Text>
-                <Text style={{ fontSize: 16 }}>📏 Height: {user!.height} inches</Text>
-                <Text style={{ fontSize: 16 }}>🏆 Level: {user!.level}</Text>
+            <View>
+                <Text>User Details:</Text>
+                <Text>Name: {user?.name}</Text>
+                <Text>Age: {user?.age}</Text>
+                <Text>Weight: {user?.weight} lbs</Text>
+                <Text>Height: {user?.height} inches</Text>
+                <Text>Level: {user?.level}</Text>
+                <Button title="Change Workout Plan to Beginner" onPress={() => updateWorkoutLevel("Beginner")} />
+                <Button title="Change Workout Plan to Intermediate" onPress={() => updateWorkoutLevel("Intermediate")} />
+                <Button title="Change Workout Plan to Advanced" onPress={() => updateWorkoutLevel("Advanced")} />
+                <Text>Change Weight:</Text>
+                <TextInput placeholder="Enter Weight" keyboardType="default" onChangeText={(text) => updateWeight(text)} />
             </View>
         </ScrollView>
     );
