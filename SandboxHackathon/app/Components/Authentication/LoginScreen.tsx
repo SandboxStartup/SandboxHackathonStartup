@@ -31,7 +31,7 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
     const handleLogin = async () => {
 
-            const loginResponse = await fetch('http://localhost:3000/api/login/user', {
+            const loginResponse = await fetch('http://10.54.2.5:3000/api/login/user', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -38,29 +38,29 @@ export class BeginnerWorkoutPlan extends WorkoutPlan{
     generateWorkouts() {
         return new Map<string, Exercise[]>([
             ["Monday", [
-                new Exercise("Bench Press", "Chest", "Barbell", "Press the barbell from chest level upwards.", 4, 8, 60, "Intermediate"),
-                new Exercise("Pull-Ups", "Back", "Bodyweight", "Pull your chin above the bar.", 3, 10, 60, "Advanced"),
+                new Exercise("Bench Press", "Chest", "Barbell", "Press the barbell from chest level upwards.", 4, 8, 60, "Beginner"),
+                new Exercise("Pull-Ups", "Back", "Bodyweight", "Pull your chin above the bar.", 3, 10, 60, "Beginner"),
                 new Exercise("Bicep Curls", "Arms", "Dumbbells", "Curl the dumbbells towards your shoulders.", 3, 12, 45, "Beginner")
             ]],
             ["Tuesday", [
-                new Exercise("Squats", "Legs", "Barbell", "Lower your body by bending knees, then stand back up.", 4, 10, 90, "Intermediate"),
+                new Exercise("Squats", "Legs", "Barbell", "Lower your body by bending knees, then stand back up.", 4, 10, 90, "Beginner"),
                 new Exercise("Lunges", "Legs", "Dumbbells", "Step forward and lower your back knee close to the floor.", 3, 12, 60, "Beginner"),
                 new Exercise("Calf Raises", "Legs", "Bodyweight", "Rise up on your toes and lower down slowly.", 4, 15, 30, "Beginner")
             ]],
             ["Thursday", [
-                new Exercise("Incline Dumbbell Press", "Chest", "Dumbbells", "Press dumbbells up at an incline.", 4, 8, 60, "Intermediate"),
-                new Exercise("Lat Pulldown", "Back", "Machine", "Pull the bar down to chest level.", 3, 10, 60, "Intermediate"),
-                new Exercise("Tricep Dips", "Arms", "Bodyweight", "Lower your body by bending elbows, then push up.", 3, 10, 60, "Advanced")
+                new Exercise("Incline Dumbbell Press", "Chest", "Dumbbells", "Press dumbbells up at an incline.", 4, 8, 60, "Beginner"),
+                new Exercise("Lat Pulldown", "Back", "Machine", "Pull the bar down to chest level.", 3, 10, 60, "Beginner"),
+                new Exercise("Tricep Dips", "Arms", "Bodyweight", "Lower your body by bending elbows, then push up.", 3, 10, 60, "Beginner")
             ]],
             ["Friday", [
-                new Exercise("Deadlifts", "Back", "Barbell", "Lift the barbell from the floor to standing.", 4, 6, 120, "Advanced"),
-                new Exercise("Leg Press", "Legs", "Machine", "Press the platform upwards using your legs.", 3, 10, 90, "Intermediate"),
+                new Exercise("Deadlifts", "Back", "Barbell", "Lift the barbell from the floor to standing.", 4, 6, 120, "Beginner"),
+                new Exercise("Leg Press", "Legs", "Machine", "Press the platform upwards using your legs.", 3, 10, 90, "Beginner"),
                 new Exercise("Hamstring Curls", "Legs", "Machine", "Curl the weight towards your glutes.", 3, 12, 60, "Beginner")
             ]],
             ["Saturday", [
                 new Exercise("Planks", "Core", "Bodyweight", "Hold a straight-body position for time.", 3, 60, 30, "Beginner"),
-                new Exercise("Russian Twists", "Core", "Dumbbell", "Twist your torso while holding a dumbbell.", 3, 20, 30, "Intermediate"),
-                new Exercise("Hanging Leg Raises", "Core", "Bodyweight", "Raise your legs while hanging from a bar.", 3, 12, 45, "Advanced")
+                new Exercise("Russian Twists", "Core", "Dumbbell", "Twist your torso while holding a dumbbell.", 3, 20, 30, "Beginner"),
+                new Exercise("Hanging Leg Raises", "Core", "Bodyweight", "Raise your legs while hanging from a bar.", 3, 12, 45, "Beginner")
             ]]
         ]);
     }

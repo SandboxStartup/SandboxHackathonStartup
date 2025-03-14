@@ -50,7 +50,7 @@ export default function FillUserProfile({ userName,userPassword, navigation }: F
 
     // Update nutrition plan
     const updateNutritionPlan = () => {
-        setNutritionPlanState(new NutritionPlan([]));
+        setNutritionPlanState(new NutritionPlan(new Map()));
     };
 
         // Function to handle input changes
@@ -76,7 +76,7 @@ export default function FillUserProfile({ userName,userPassword, navigation }: F
             selectedWorkoutPlan = new AdvancedWorkoutPlan([], new Map());
         }
 
-        const selectedNutritionPlan = new NutritionPlan([]);
+        const selectedNutritionPlan = new NutritionPlan(new Map());
 
         const newUser = new User(name, parseInt(age), parseInt(weight), parseInt(height), level, selectedWorkoutPlan, selectedNutritionPlan);
         setUser(newUser);
