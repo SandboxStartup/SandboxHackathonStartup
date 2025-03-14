@@ -80,5 +80,17 @@ export const styles = StyleSheet.create({
         height: 400,
         borderRadius: 50,
         marginTop: 20,
+    },
+    navBar: {
+        flexDirection: 'row', 
+            justifyContent: 'space-around', 
+            alignItems: 'center', 
+            backgroundColor: '#fff', 
+            paddingVertical: 10, 
+            borderTopWidth: 1, 
+            borderTopColor: '#ccc',
+            position: 'absolute',
+            bottom: 0,
+            width: '100%',
     }
 });

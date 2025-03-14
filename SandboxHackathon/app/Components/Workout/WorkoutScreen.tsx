@@ -1,13 +1,16 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@/app/_layout";
 import { styles } from "@/app/Components/Authentication/AuthenticationStyle";
+import AppNavBar from "../AppNavbar/AppNavbar";
+import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 
 type WorkoutScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Workout">;
 
 interface WorkoutScreenProps {
-    navigation: WorkoutScreenNavigationProp;
+    // navigation: WorkoutScreenNavigationProp;
+    navigation: BottomTabNavigationProp<RootStackParamList>;
 }
 
 export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
@@ -21,16 +24,13 @@ export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Workout Screen</Text>
-
-            <TouchableOpacity style={styles.button} onPress={handleGoToFood}>
-                <Text style={styles.buttonText}>Go to Food</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button} onPress={handleGoToHome}>
-                <Text style={styles.buttonText}>Go to Home</Text>
-            </TouchableOpacity>
+        <View>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+            <AppNavBar navigation={navigation} />
+                <View>
+                    
+                </View>
+            </ScrollView>
         </View>
     );
 }

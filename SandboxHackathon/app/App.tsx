@@ -3,6 +3,15 @@ import { Text, View, TouchableOpacity, Image } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "./_layout"; // Assuming types are in a separate file
 import { styles } from "./Components/Authentication/AuthenticationStyle"; // Assuming the styles are imported from a separate file
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import HomeScreen from "./Components/HomeScreen";
+import WorkoutScreen from "./Components/Workout/WorkoutScreen";
+import NutritionScreen from "./Components/Nutrition/NutritionScreen";
+// import SettingsScreen from "./Components/Settings/SettingsScreen";
+
+const Tab = createBottomTabNavigator();
 
 type AppScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
 
