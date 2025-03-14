@@ -6,11 +6,12 @@ import { styles } from "@/app/Components/Authentication/AuthenticationStyle";
 import AppNavBar from "../AppNavbar/AppNavbar";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 
-type WorkoutScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Workout">;
+// type WorkoutScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Workout">;
+type WorkoutScreenNavigationProp = BottomTabNavigationProp<RootStackParamList, "Workout">;
 
 interface WorkoutScreenProps {
-    // navigation: WorkoutScreenNavigationProp;
-    navigation: BottomTabNavigationProp<RootStackParamList>;
+    navigation: WorkoutScreenNavigationProp;
+    // navigation: BottomTabNavigationProp<RootStackParamList>;
 }
 
 export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
@@ -24,12 +25,20 @@ export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
     };
 
     return (
-        <View>
-            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={{flex: 1}}>
             <AppNavBar navigation={navigation} />
-                <View>
-                    
-                </View>
+
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+
+                <Text style={styles.title}>Workout Screen</Text>
+
+                {/* <TouchableOpacity style={styles.button} onPress={handleGoToFood}>
+                    <Text style={styles.buttonText}>Go to Nutrition</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.button} onPress={handleGoToHome}>
+                    <Text style={styles.buttonText}>Go to Home</Text>
+                </TouchableOpacity>  */}
             </ScrollView>
         </View>
     );

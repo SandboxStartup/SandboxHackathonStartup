@@ -26,6 +26,9 @@ const HomeScreen = ({ navigation, route }: HomeScreenProps) => {
         return (
             <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
                 <AppNavbar navigation={navigation} />
+                <View>
+                    <Text>Welcome, Guest</Text>
+                </View>
             </ScrollView>
         );
     }

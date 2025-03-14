@@ -1,8 +1,9 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, ScrollView } from "react-native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "@/app/_layout";
 import { styles } from "@/app/Components/Authentication/AuthenticationStyle";
+import AppNavBar from "../AppNavbar/AppNavbar";
 
 type NutritionScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Nutrition">;
 
@@ -21,16 +22,30 @@ export default function NutritionScreen({ navigation }: NutritionScreenProps) {
     };
 
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>Nutrition Screen</Text>
+        <View style={{flex: 1}}>
+            <AppNavBar navigation={navigation} />
 
-            <TouchableOpacity style={styles.button} onPress={handleGoToWorkout}>
-                <Text style={styles.buttonText}>Go to Workout</Text>
-            </TouchableOpacity>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
 
-            <TouchableOpacity style={styles.button} onPress={handleGoToHome}>
-                <Text style={styles.buttonText}>Go to Home</Text>
-            </TouchableOpacity>
+                <Text style={styles.title}>Nutrition Screen</Text>
+                
+            </ScrollView>
         </View>
+
+
+       
     );
 }
+
+
+{/* <View style={styles.container}>
+<Text style={styles.title}>Nutrition Screen</Text>
+
+<TouchableOpacity style={styles.button} onPress={handleGoToWorkout}>
+    <Text style={styles.buttonText}>Go to Workout</Text>
+</TouchableOpacity>
+
+<TouchableOpacity style={styles.button} onPress={handleGoToHome}>
+    <Text style={styles.buttonText}>Go to Home</Text>
+</TouchableOpacity>
+</View> */}

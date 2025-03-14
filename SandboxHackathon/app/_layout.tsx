@@ -23,7 +23,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 export default function RootLayout() {
   return (
 
-        <Stack.Navigator initialRouteName="App">
+        <Stack.Navigator initialRouteName="App" screenOptions={{ headerShown: false }}>
           <Stack.Screen name="App" component={App} />
           <Stack.Screen name="Home" component={HomeScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />

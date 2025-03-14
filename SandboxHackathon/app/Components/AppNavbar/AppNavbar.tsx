@@ -11,8 +11,7 @@ import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Home">;
 
 interface AppNavBarProps {
-    // navigation: HomeScreenNavigationProp;
-    navigation: BottomTabNavigationProp<RootStackParamList>;
+    navigation: HomeScreenNavigationProp;
 }
 
 const Tab = createBottomTabNavigator();
@@ -24,20 +23,20 @@ const AppNavBar = ({navigation}: AppNavBarProps) => {
         <View style={styles.navBar}>
             {/* Home Icon */}
             <TouchableOpacity onPress={() => navigation.navigate('Home')} style={{ alignItems: 'center' }}>
-              <MaterialCommunityIcons name="home" color="blue" size={30} />
-              <Text style={{ fontSize: 12, color: 'blue' }}>Home</Text>
+              <MaterialCommunityIcons name="home" color="#FFA726" size={30} />
+              <Text style={{ fontSize: 12, color: '#FFA726' }}>Home</Text>
             </TouchableOpacity>
       
             {/* Workout Icon */}
             <TouchableOpacity onPress={() => navigation.navigate('Workout')} style={{ alignItems: 'center' }}>
-              <MaterialCommunityIcons name="dumbbell" color="black" size={30} />
-              <Text style={{ fontSize: 12, color: 'black' }}>Workout</Text>
+              <MaterialCommunityIcons name="dumbbell" color="#FFA726" size={30} />
+              <Text style={{ fontSize: 12, color: '#FFA726' }}>Workout</Text>
             </TouchableOpacity>
       
             {/* Nutrition Icon */}
             <TouchableOpacity onPress={() => navigation.navigate('Nutrition')} style={{ alignItems: 'center' }}>
-              <MaterialCommunityIcons name="food" color="green" size={30} />
-              <Text style={{ fontSize: 12, color: 'green' }}>Nutrition</Text>
+              <MaterialCommunityIcons name="food" color="#FFA726" size={30} />
+              <Text style={{ fontSize: 12, color: '#FFA726' }}>Nutrition</Text>
             </TouchableOpacity>
           </View>
         
