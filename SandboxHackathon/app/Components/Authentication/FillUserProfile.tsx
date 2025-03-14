@@ -15,16 +15,19 @@ interface RegisterScreenProps {
 }
 type FillUserProfileProps = {
     userName: string;
+    userPassword: string;
     navigation: NativeStackNavigationProp<RootStackParamList, "Register">;
+
 };
 
-export default function FillUserProfile({ userName, navigation }: FillUserProfileProps) {
+export default function FillUserProfile({ userName,userPassword, navigation }: FillUserProfileProps) {
     // State variables for user input
     const [name, setName] = useState(userName);
     const [age, setAge] = useState("");
     const [weight, setWeight] = useState("");
     const [height, setHeight] = useState("");
     const [level, setLevel] = useState("");
+    const [password, setPassword] = useState(userPassword);
     const [workoutPlan, setWorkoutPlanState] = useState<WorkoutPlan | null>(null);
     const [nutritionPlan, setNutritionPlanState] = useState<NutritionPlan | null>(null);
     const { setUser, user } = useUser();
@@ -78,22 +81,27 @@ export default function FillUserProfile({ userName, navigation }: FillUserProfil
         const newUser = new User(name, parseInt(age), parseInt(weight), parseInt(height), level, selectedWorkoutPlan, selectedNutritionPlan);
         setUser(newUser);
 
-        const registerResponse = await fetch('http://localhost:3000/api/createUser', {
+        const registerResponse = await fetch('http://192.168.86.25:3000/api/createUser', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(newUser),
+            body: JSON.stringify({...newUser, _password: password}), // Send data correctly
         });
 
         if (!registerResponse.ok) {
-            alert("Failed to create user");
-        }
-        else{
+            if (registerResponse.status === 401) {
+                alert("User data is incomplete");
+            } else if (registerResponse.status === 400) {
+                alert("User already exists login instead");
+                navigation.navigate("Login");
+            }
+        } else {
 
             navigation.navigate("Home");
         }
-    };
+    }
+
 
 
     return (

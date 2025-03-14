@@ -12,7 +12,7 @@ interface NutritionScreenProps {
 
 export default function NutritionScreen({ navigation }: NutritionScreenProps) {
 
-    const {setIsAuthenticated} = useUser();
+    const {setIsAuthenticated, user} = useUser();
 
 
     const handleGoToWorkout = () => {
@@ -23,10 +23,30 @@ export default function NutritionScreen({ navigation }: NutritionScreenProps) {
         navigation.navigate("Home"); // Navigate to Home screen
     };
 
-    const handleLogout = () => {
-        setIsAuthenticated(false);
-        navigation.navigate("App")
+    const handleLogout = async () => {
+        try {
+            const logoutResponse = await fetch('http://localhost:3000/api/logout', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ userName: user?.name }), // Send as an object
+            });
+
+            if (!logoutResponse.ok) {
+                alert("Failed to logout");
+                return;
+            }
+
+            setIsAuthenticated(false);
+            navigation.navigate("App");
+
+        } catch (error) {
+            console.error("Logout error:", error);
+            alert("An error occurred while logging out.");
+        }
     };
+
 
     return (
         <View style={styles.container}>
