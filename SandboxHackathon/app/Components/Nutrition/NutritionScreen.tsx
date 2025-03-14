@@ -8,11 +8,12 @@ import React, { useState } from "react";
 import { useUser } from "@/app/Hooks/UserProvider";
 import { Meal } from "@/app/Classes/Meal";
 import {Calorie, Gram, Macro, Milligram} from "@/app/Classes/Macro";
+import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
 
 type NutritionScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Nutrition">;
 
 interface NutritionScreenProps {
-    navigation: NutritionScreenNavigationProp;
+    navigation: NutritionScreenNavigationProp | BottomTabNavigationProp<RootStackParamList>;
 }
 
 export default function NutritionScreen({ navigation }: NutritionScreenProps) {
@@ -53,7 +54,9 @@ export default function NutritionScreen({ navigation }: NutritionScreenProps) {
     };
 
     return (
-        <View>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+        <AppNavBar navigation={navigation} />
+            <View>
             {!mealPlan ? (
                 <>
                     <Text>Nutrition Screen</Text>
@@ -77,6 +80,7 @@ export default function NutritionScreen({ navigation }: NutritionScreenProps) {
                 <MealPlanDisplay mealPlan={mealPlan} onBack={() => setMealPlan(null)} />
             )}
         </View>
+        </ScrollView>
     );
 }
 

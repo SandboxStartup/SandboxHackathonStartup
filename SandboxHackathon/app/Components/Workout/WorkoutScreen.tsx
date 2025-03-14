@@ -32,7 +32,9 @@ export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
     };
 
     return (
-        <View>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+        <AppNavBar navigation={navigation} />
+            <View>
             {!workout ? (
                 <>
                     <Text>Workout Screen</Text>
@@ -50,6 +52,7 @@ export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
                 <WorkoutPlanDisplay workout={workout} onBack={() => setWorkout(null)} />
             )}
         </View>
+        </ScrollView>
     );
 }
 

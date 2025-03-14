@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, Button, ScrollView, TouchableOpacity, TextInput } from "react-native";
-import { styles, theme } from "@/app/Components/Authentication/AuthenticationStyle";
-import {NativeStackNavigationProp} from "@react-navigation/native-stack";
-import {RootStackParamList} from "@/app/_layout";
-import React, { useEffect } from "react";
 import AppNavbar from "./AppNavbar/AppNavbar";
 import { useUser } from "../Hooks/UserProvider";
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { NativeStackNavigationProp} from "@react-navigation/native-stack";
 import { RootStackParamList } from "../_layout";
 import { AdvancedWorkoutPlan, BeginnerWorkoutPlan, IntermediateWorkoutPlan } from "@/app/Classes/WorkoutPlan";
 
@@ -66,30 +62,31 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     }
 
     return (
-        <View>
-            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
-
-    return (
-        <ScrollView>
+        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
             <AppNavbar navigation={navigation} />
             <View>
-                <Text>Welcome {user?.name}!</Text>
-            </View>
-            <View>
-                <Text>User Details:</Text>
-                <Text>Name: {user?.name}</Text>
-                <Text>Age: {user?.age}</Text>
-                <Text>Weight: {user?.weight} lbs</Text>
-                <Text>Height: {user?.height} inches</Text>
-                <Text>Level: {user?.level}</Text>
-                <Button title="Change Workout Plan to Beginner" onPress={() => updateWorkoutLevel("Beginner")} />
-                <Button title="Change Workout Plan to Intermediate" onPress={() => updateWorkoutLevel("Intermediate")} />
-                <Button title="Change Workout Plan to Advanced" onPress={() => updateWorkoutLevel("Advanced")} />
-                <Text>Change Weight:</Text>
-                <TextInput placeholder="Enter Weight" keyboardType="default" onChangeText={(text) => updateWeight(text)} />
+                <Text>Welcome, Guest</Text>
             </View>
         </ScrollView>
-        </View>
+        // <ScrollView>
+        //     <AppNavbar navigation={navigation} />
+        //     <View>
+        //         <Text>Welcome {user?.name}!</Text>
+        //     </View>
+        //     <View>
+        //         <Text>User Details:</Text>
+        //         <Text>Name: {user?.name}</Text>
+        //         <Text>Age: {user?.age}</Text>
+        //         <Text>Weight: {user?.weight} lbs</Text>
+        //         <Text>Height: {user?.height} inches</Text>
+        //         <Text>Level: {user?.level}</Text>
+        //         <Button title="Change Workout Plan to Beginner" onPress={() => updateWorkoutLevel("Beginner")} />
+        //         <Button title="Change Workout Plan to Intermediate" onPress={() => updateWorkoutLevel("Intermediate")} />
+        //         <Button title="Change Workout Plan to Advanced" onPress={() => updateWorkoutLevel("Advanced")} />
+        //         <Text>Change Weight:</Text>
+        //         <TextInput placeholder="Enter Weight" keyboardType="default" onChangeText={(text) => updateWeight(text)} />
+        //     </View>
+        // </ScrollView>
         
     );
 };

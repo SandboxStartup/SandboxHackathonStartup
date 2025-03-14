@@ -5,13 +5,13 @@ import { styles, theme } from "../Authentication/AuthenticationStyle";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/app/_layout"; // Ensure you import your styles correctly
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {BottomTabNavigationProp} from "@react-navigation/bottom-tabs";
+import {MaterialCommunityIcons} from "@expo/vector-icons";
 
 type HomeScreenNavigationProp = NativeStackNavigationProp<RootStackParamList, "Home">;
 
 interface AppNavBarProps {
-    navigation: HomeScreenNavigationProp;
+    navigation: HomeScreenNavigationProp | BottomTabNavigationProp<RootStackParamList> | any;
 }
 
 const Tab = createBottomTabNavigator();
