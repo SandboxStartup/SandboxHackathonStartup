@@ -1,4 +1,5 @@
-import { Text, View, TouchableOpacity } from "react-native";
+import React from "react";
+import { Text, View, TouchableOpacity, Image } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "./_layout"; // Assuming types are in a separate file
 import { styles } from "./Components/Authentication/AuthenticationStyle"; // Assuming the styles are imported from a separate file
@@ -25,19 +26,27 @@ const AppScreen = ({ navigation }: AppScreenProps) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>App Screen</Text>
+            <View style={styles.headerBackground}>
+                    <Image source={require('../images/weightlifterCoverPhoto.png')} style={styles.image} resizeMode="contain"/>
+                    {/* <Image source={{uri: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pngwing.com%2Fen%2Ffree-png-nctih&psig=AOvVaw21mPdVmNT-JT-M-dQCG8Zq&ust=1742017293022000&source=images&cd=vfe&opi=89978449&ved=0CBQQjRxqFwoTCKje1KruiIwDFQAAAAAdAAAAABAJ'}} style={styles.image} resizeMode="contain"/> */}
+            </View>
 
-            <TouchableOpacity style={styles.button} onPress={handleGoToHome}>
-                <Text style={styles.buttonText}>Go to Home</Text>
-            </TouchableOpacity>
+            <View>
+                <Text style={styles.title}>Welcome to Intelifit</Text>
+                <Text style={styles.subtitle}>Your personal fitness assistant</Text>
 
-            <TouchableOpacity style={styles.button} onPress={handleGoToLogin}>
-                <Text style={styles.buttonText}>Go to Login</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.appButton} onPress={handleGoToHome}>
+                    <Text style={styles.appButtonText}>Home</Text>
+                </TouchableOpacity>
 
-            <TouchableOpacity style={styles.button} onPress={handleGoToRegister}>
-                <Text style={styles.buttonText}>Go to Register</Text>
-            </TouchableOpacity>
+                <TouchableOpacity style={styles.appButton} onPress={handleGoToRegister}>
+                    <Text style={styles.appButtonText}>Register</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.appButton} onPress={handleGoToLogin}>
+                    <Text style={styles.appButtonText}>Login</Text>
+                </TouchableOpacity>
+            </View>
         </View>
     );
 };

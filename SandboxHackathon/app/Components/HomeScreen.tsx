@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { View, Text, Button, ScrollView, TouchableOpacity } from "react-native";
-
+import { styles, theme } from "@/app/Components/Authentication/AuthenticationStyle";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
 import {RootStackParamList} from "@/app/_layout";
 import AppNavbar from "./AppNavbar/AppNavbar";
@@ -20,10 +20,19 @@ interface HomeScreenProps {
 }
 
 const HomeScreen = ({ navigation, route }: HomeScreenProps) => {
-    const { user } = route.params;
+    const user = route.params?.user;
+
+    if (!user) {
+        return (
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+                <AppNavbar navigation={navigation} />
+            </ScrollView>
+        );
+    }
 
     return (
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+        <View>
+            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
             <AppNavbar navigation={navigation} />
             <View>
                 <Text>Welcome, {user.name}</Text>
@@ -33,6 +42,8 @@ const HomeScreen = ({ navigation, route }: HomeScreenProps) => {
                 <Text>Level: {user.level}</Text>
             </View>
         </ScrollView>
+        </View>
+        
     );
 };
 
