@@ -1,5 +1,5 @@
 import { Text, TextInput, View, TouchableOpacity } from "react-native";
-import { useState } from "react";
+import React, { useState } from "react";
 
 import { theme, styles } from "./AuthenticationStyle";
 import {NativeStackNavigationProp} from "@react-navigation/native-stack";
@@ -34,33 +34,67 @@ export default function RegisterScreen({ navigation }: RegisterScreenProps) {
 
         return (
             <View style={styles.container}>
-                <Text style={styles.title}>Welcome to Hack To The Future</Text>
+                <View style={styles.header}>
+                    <Text style={styles.logo}>🏋️</Text>
+                    <Text style={styles.title}>Welcome to Intelifit</Text>
+                </View>
+                <View style={styles.form}>
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter Username"
+                        placeholderTextColor="#aaa"
+                        value={userName}
+                        onChangeText={setUserName}
+                    />
 
-                <TextInput
-                    style={styles.input}
-                    placeholder="Enter Username"
-                    placeholderTextColor={theme.text}
-                    value={userName}
-                    onChangeText={setUserName}
-                />
+                    <TextInput
+                        style={styles.input}
+                        placeholder="Enter Password"
+                        placeholderTextColor="#aaa"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry={!showPassword}
+                    />
 
-                <TextInput
-                    style={styles.input}
-                    placeholder="Enter Password"
-                    placeholderTextColor={theme.text}
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry={!showPassword}
-                />
+                    <TouchableOpacity style={styles.appButton} onPress={toggleShowPassword}>
+                        <Text style={styles.buttonText}>{showPassword ? "Hide" : "Show"} Password</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity style={styles.button} onPress={toggleShowPassword}>
-                    <Text style={styles.buttonText}>{showPassword ? "Hide" : "Show"} Password</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.button} onPress={handleRegister}>
-                    <Text style={styles.buttonText}>Register</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity style={styles.appButton} onPress={handleRegister}>
+                        <Text style={styles.buttonText}>Register</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }
 }
+
+
+// <View style={styles.container}>
+//     <Text style={styles.title}>Welcome to Hack To The Future</Text>
+
+//     <TextInput
+//         style={styles.input}
+//         placeholder="Enter Username"
+//         placeholderTextColor={theme.text}
+//         value={userName}
+//         onChangeText={setUserName}
+//     />
+
+//     <TextInput
+//         style={styles.input}
+//         placeholder="Enter Password"
+//         placeholderTextColor={theme.text}
+//         value={password}
+//         onChangeText={setPassword}
+//         secureTextEntry={!showPassword}
+//     />
+
+//     <TouchableOpacity style={styles.button} onPress={toggleShowPassword}>
+//         <Text style={styles.buttonText}>{showPassword ? "Hide" : "Show"} Password</Text>
+//     </TouchableOpacity>
+
+//     <TouchableOpacity style={styles.button} onPress={handleRegister}>
+//         <Text style={styles.buttonText}>Register</Text>
+//     </TouchableOpacity>
+// </View>

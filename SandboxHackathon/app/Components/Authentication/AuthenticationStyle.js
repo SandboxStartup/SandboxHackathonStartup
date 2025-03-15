@@ -17,6 +17,21 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         padding: 20,
     },
+    regContainer: {
+        flex: 1,
+        backgroundColor: "#F5F5F5",
+        alignItems: "center",
+        justifyContent: "center",
+        paddingHorizontal: 20,
+    },
+    logo: {
+        fontSize: 80,
+        marginBottom: 10,
+    },
+    header: {
+        alignItems: "center",
+        marginBottom: 20,
+    },
     headerBackground: {
         width: "100%",
         height: "45%",
@@ -92,5 +107,9 @@ export const styles = StyleSheet.create({
             position: 'absolute',
             bottom: 0,
             width: '100%',
+    },
+    form: {
+        width: '100%',
+        alignItems: 'center',
     }
 });
