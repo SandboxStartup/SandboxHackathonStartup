@@ -88,12 +88,12 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
                     secureTextEntry={!showPassword}
                 />
 
-                <TouchableOpacity style={styles.button} onPress={toggleShowPassword}>
+                <TouchableOpacity style={styles.appButton} onPress={toggleShowPassword}>
                     <Text style={styles.buttonText}>{showPassword ? 'Hide' : 'Show'} Password</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={styles.button}
+                    style={styles.appButton}
                     onPress={handleLogin}>
                     <Text style={styles.buttonText}>Login</Text>
                 </TouchableOpacity>
