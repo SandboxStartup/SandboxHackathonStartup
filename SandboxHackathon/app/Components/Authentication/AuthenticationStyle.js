@@ -27,7 +27,7 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
     },
     activeDayButton: {
-        // backgoundColor: '#f9a825',
+        // backgoundColor: '#f9a825 !important',
     },
     activeDayButtonText: {
         color: '#fff',
