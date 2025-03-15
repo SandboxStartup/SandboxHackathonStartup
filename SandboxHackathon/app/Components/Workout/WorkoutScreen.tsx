@@ -45,16 +45,14 @@ export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
             <View>
             {!workout ? (
                 <>
-                    <Text>Workout Screen</Text>
-                    <TouchableOpacity onPress={handleGoToFood}>
-                        <Text>Go to Food</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={handleGoToHome}>
-                        <Text>Go to Home</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={generateWorkout}>
-                        <Text>Generate Workout</Text>
-                    </TouchableOpacity>
+                    <Text style={styles.title}>Ready to Start Your Workout Plan?</Text>
+                    <Text style={styles.subtitle}>Press the button below to generate your personalized workout plan</Text>
+                    <View style={styles.container}>
+                        <TouchableOpacity style={styles.appButton} onPress={generateWorkout}>
+                            <Text style={styles.appButtonText}>Generate Workout</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
                 </>
             ) : (
                 <WorkoutPlanDisplay workout={workout} selectedDay={selectedDay} setSelectedDay={setSelectedDay} onBack={() => setWorkout(null)} />
