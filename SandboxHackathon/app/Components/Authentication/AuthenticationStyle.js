@@ -17,6 +17,42 @@ export const styles = StyleSheet.create({
         justifyContent: "center",
         padding: 20,
     },
+    workoutContainer: {
+        marginTop: 20,
+        width: '100%',
+    },
+    dayButtonsContainer: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginBottom: 10,
+    },
+    activeDayButton: {
+        // backgoundColor: '#f9a825',
+    },
+    activeDayButtonText: {
+        color: '#fff',
+    },
+    dayButton: {
+        backgroundColor: '#ddd',
+        paddingVertical: 10,
+        paddingHorizontal: 15,
+        borderRadius: 20,
+        marginHorizontal: 5,
+    },
+    dayButtonText: {
+        color: '#333',
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
+    exerciseList: {
+        paddingBottom: 20,
+    },
+    dayTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#333',
+        // marginBottom-10,
+    },
     regContainer: {
         flex: 1,
         backgroundColor: "#F5F5F5",
@@ -40,6 +76,11 @@ export const styles = StyleSheet.create({
         borderBottomRightRadius: 50,
         alignItems: "center",
         justifyContent: "center",
+    },
+    label: {
+        fontSize: 16,
+        color: '#333',
+        marginBottom: 5,
     },
     title: {
         fontSize: 24,
@@ -111,5 +152,22 @@ export const styles = StyleSheet.create({
     form: {
         width: '100%',
         alignItems: 'center',
+    },
+    exerciseContainer: {
+        backgroundColor: '#f9f9f9',
+        borderRadius: 10,
+        paddingVertical: 15,
+        paddingHorizontal: 10,
+        marginBottom: 15,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 2,
+    },
+    exerciseName: {
+        fontSize: 16,
+        fontWeight: 'bold',
+        color: '#555',
     }
 });
