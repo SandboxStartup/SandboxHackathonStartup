@@ -121,7 +121,7 @@ export default HomeScreen;
         //         <Text>Age: {user?.age}</Text>
         //         <Text>Weight: {user?.weight} lbs</Text>
         //         <Text>Height: {user?.height} inches</Text>
-        //         <Text>Level: {user?.level}</Text>
+        //         <Text>Level: {user?.level}</Text>q
         //         <Button title="Change Workout Plan to Beginner" onPress={() => updateWorkoutLevel("Beginner")} />
         //         <Button title="Change Workout Plan to Intermediate" onPress={() => updateWorkoutLevel("Intermediate")} />
         //         <Button title="Change Workout Plan to Advanced" onPress={() => updateWorkoutLevel("Advanced")} />

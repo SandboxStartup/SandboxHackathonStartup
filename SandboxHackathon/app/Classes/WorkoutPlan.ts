@@ -47,6 +47,11 @@ export class BeginnerWorkoutPlan extends WorkoutPlan{
                 new Exercise("Lunges", "Legs", "Dumbbells", "Step forward and lower your back knee close to the floor.", 3, 12, 60, "Beginner"),
                 new Exercise("Calf Raises", "Legs", "Bodyweight", "Rise up on your toes and lower down slowly.", 4, 15, 30, "Beginner")
             ]],
+            ["Wednesday", [
+                new Exercise("Push-Ups", "Chest", "Bodyweight", "Lower your body to the ground and push back up.", 3, 15, 45, "Beginner"),
+                new Exercise("Dumbbell Rows", "Back", "Dumbbells", "Pull the dumbbells towards your hips.", 3, 12, 60, "Beginner"),
+                new Exercise("Tricep Extensions", "Arms", "Dumbbell", "Extend your arms overhead with a dumbbell.", 3, 12, 60, "Beginner")
+            ]],
             ["Thursday", [
                 new Exercise("Incline Dumbbell Press", "Chest", "Dumbbells", "Press dumbbells up at an incline.", 4, 8, 60, "Beginner"),
                 new Exercise("Lat Pulldown", "Back", "Machine", "Pull the bar down to chest level.", 3, 10, 60, "Beginner"),
