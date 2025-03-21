@@ -2,8 +2,8 @@ import {User} from "./User";
 import {Exercise} from "./Exercise";
 
 export abstract class WorkoutPlan {
-    private _availableEquipment: string[];
-    private _exerciseMap: Map<string, Exercise[]>;
+    protected _availableEquipment: string[];
+    protected _exerciseMap: Map<string, Exercise[]>;
 
     constructor(availableEquipment: string[], exerciseMap: Map<string, Exercise[]>){
         this._availableEquipment = availableEquipment;
@@ -35,8 +35,8 @@ export class BeginnerWorkoutPlan extends WorkoutPlan{
         this.beginnerWorkouts = this.getListWorkouts();
     }
 
-    generateWorkouts() {
-        return new Map<string, Exercise[]>([
+    public generateWorkouts() {
+        this.exerciseMap =  new Map<string, Exercise[]>([
             ["Monday", [
                 new Exercise("Bench Press", "Chest", "Barbell", "Press the barbell from chest level upwards.", 4, 8, 60, "Beginner"),
                 new Exercise("Pull-Ups", "Back", "Bodyweight", "Pull your chin above the bar.", 3, 10, 60, "Beginner"),
@@ -68,6 +68,8 @@ export class BeginnerWorkoutPlan extends WorkoutPlan{
                 new Exercise("Hanging Leg Raises", "Core", "Bodyweight", "Raise your legs while hanging from a bar.", 3, 12, 45, "Beginner")
             ]]
         ]);
+
+        return this.exerciseMap;
     }
 
 
@@ -86,7 +88,7 @@ export class IntermediateWorkoutPlan extends WorkoutPlan {
     }
 
     generateWorkouts() {
-        return new Map<string, Exercise[]>([
+        this.exerciseMap = new Map<string, Exercise[]>([
             ["Monday", [
                 new Exercise("Dumbbell Bench Press", "Chest", "Dumbbells", "Press the dumbbells from chest level upwards.", 4, 10, 60, "Intermediate"),
                 new Exercise("Pull-Ups", "Back", "Bodyweight", "Pull your chin above the bar.", 4, 8, 60, "Intermediate"),
@@ -113,6 +115,7 @@ export class IntermediateWorkoutPlan extends WorkoutPlan {
                 new Exercise("Side Planks", "Core", "Bodyweight", "Hold a side position on your elbow.", 3, 45, 30, "Intermediate")
             ]]
         ]);
+        return this.exerciseMap;
     }
 
 
@@ -130,7 +133,7 @@ export class AdvancedWorkoutPlan extends WorkoutPlan{
     }
 
     generateWorkouts() {
-        return new Map<string, Exercise[]>([
+        this.exerciseMap = new Map<string, Exercise[]>([
             ["Monday", [
                 new Exercise("Barbell Bench Press", "Chest", "Barbell", "Press the barbell from chest level upwards.", 5, 6, 90, "Advanced"),
                 new Exercise("Weighted Pull-Ups", "Back", "Bodyweight + Weight", "Pull your chin above the bar while carrying extra weight.", 4, 8, 75, "Advanced"),
@@ -157,6 +160,7 @@ export class AdvancedWorkoutPlan extends WorkoutPlan{
                 new Exercise("Ab Rollouts", "Core", "Ab Wheel", "Extend forward and return while keeping core engaged.", 4, 10, 45, "Advanced")
             ]]
         ]);
+        return this.exerciseMap;
     }
 
 

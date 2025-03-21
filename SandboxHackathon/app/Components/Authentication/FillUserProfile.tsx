@@ -31,7 +31,7 @@ export default function FillUserProfile({ userName,userPassword, navigation }: F
     const [password, setPassword] = useState(userPassword);
     const [workoutPlan, setWorkoutPlanState] = useState<WorkoutPlan | null>(null);
     const [nutritionPlan, setNutritionPlanState] = useState<NutritionPlan | null>(null);
-    const { setUser, user } = useUser();
+    const { setUser, user, setWorkoutPlan, setNutritionPlan } = useUser();
 
 
 
@@ -76,8 +76,9 @@ export default function FillUserProfile({ userName,userPassword, navigation }: F
         } else if (level === "Advanced") {
             selectedWorkoutPlan = new AdvancedWorkoutPlan([], new Map());
         }
-
+        setWorkoutPlan(selectedWorkoutPlan);
         const selectedNutritionPlan = new NutritionPlan(new Map());
+        setNutritionPlan(selectedNutritionPlan);
 
         const newUser = new User(name, parseInt(age), parseInt(weight), parseInt(height), level, selectedWorkoutPlan, selectedNutritionPlan);
         setUser(newUser);

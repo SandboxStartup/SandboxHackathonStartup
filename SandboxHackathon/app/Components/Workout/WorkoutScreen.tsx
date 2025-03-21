@@ -24,7 +24,7 @@ interface WorkoutPlanDisplayProps {
 }
 
 export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
-    const { user } = useUser();
+    const { user , setUser, workoutPlan, setWorkoutPlan} = useUser();
     const [workout, setWorkout] = useState<Map<string, Exercise[]> | null>(null);
     const [selectedDay, setSelectedDay] = useState<string | null>(null);
 
@@ -32,11 +32,19 @@ export default function WorkoutScreen({ navigation }: WorkoutScreenProps) {
     const handleGoToHome = () => navigation.navigate("Home");
 
     const generateWorkout = () => {
-        if (!user?.workoutPlan) {
+        if (workoutPlan === null) {
             console.error("User does not have a workout plan");
             return;
         }
-        setWorkout(user.workoutPlan.generateWorkouts());
+        else{
+            let newWorkoutPlan = workoutPlan;
+            newWorkoutPlan.generateWorkouts()
+            setWorkoutPlan(newWorkoutPlan)
+            setWorkout(workoutPlan.exerciseMap)
+
+        }
+
+
     };
 
     return (
