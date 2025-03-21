@@ -5,6 +5,7 @@ import { useUser } from "../Hooks/UserProvider";
 import { NativeStackNavigationProp} from "@react-navigation/native-stack";
 import { RootStackParamList } from "../_layout";
 import { AdvancedWorkoutPlan, BeginnerWorkoutPlan, IntermediateWorkoutPlan } from "@/app/Classes/WorkoutPlan";
+import { styles } from "@/app/Components/Authentication/AuthenticationStyle";
 
 interface HomeScreenProps {
     navigation: NativeStackNavigationProp<RootStackParamList, "Home">;
@@ -50,25 +51,66 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         }
     };
 
-    if (!user) {
-        return (
-            <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
-                <AppNavbar navigation={navigation} />
-                <View>
-                    <Text>Welcome, Guest</Text>
-                </View>
-            </ScrollView>
-        );
-    }
+    // if (!user) {
+    //     return (
+    //         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+    //             <AppNavbar navigation={navigation} />
+    //             <View>
+    //                 <Text>Welcome, Guest</Text>
+    //             </View>
+    //         </ScrollView>
+    //     );
+    // }
 
     return (
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+        <ScrollView style={styles.scrollView} contentContainerStyle={[styles.contentContainer, {flexGrow: 1}]}>
             <AppNavbar navigation={navigation} />
-            <View>
-                <Text>Welcome, Guest</Text>
+            {/* Welcome Section */}
+            <View style={styles.header}>
+                <Text style={styles.title}>Welcome back, {user?.name || 'Guest'}!</Text>
+                <Text style={styles.subtitle}>Your fitness journey continues!</Text>
             </View>
+
+            {/* Progress Tracking Section */}
+            <View style={styles.progressContainer}>
+                <Text style={styles.sectionTitle}>Your Progress</Text>
+                <View style={styles.progressCard}>
+                    <Text style={styles.progressLabel}>Weight:</Text>
+                    <Text style={styles.progressValue}>{user?.weight || 'N/A'} lbs</Text>
+                </View>
+                <View style={styles.progressCard}>
+                    <Text style={styles.progressLabel}>Level:</Text>
+                    <Text style={styles.progressValue}>{user?.level || 'N/A'}</Text>
+                </View>
+                <View style={styles.progressCard}>
+                    <Text style={styles.progressLabel}>Height:</Text>
+                    <Text style={styles.progressValue}>{user?.height || 'N/A'} inches</Text>
+                </View>
+            </View>
+
+            {/* Update User Characteristics Button */}
+            <TouchableOpacity
+            style={styles.updateButton}
+            // onPress={() => navigation.navigate('Profile')}
+            >
+                <Text style={styles.buttonText}>Update Your Profile</Text>
+            </TouchableOpacity>
         </ScrollView>
-        // <ScrollView>
+        
+    );
+};
+
+export default HomeScreen;
+
+
+
+// <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+        //     <AppNavbar navigation={navigation} />
+        //     <View>
+        //         <Text>Welcome, Guest</Text>
+        //     </View>
+        // </ScrollView>
+        // <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
         //     <AppNavbar navigation={navigation} />
         //     <View>
         //         <Text>Welcome {user?.name}!</Text>
@@ -87,8 +129,3 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         //         <TextInput placeholder="Enter Weight" keyboardType="default" onChangeText={(text) => updateWeight(text)} />
         //     </View>
         // </ScrollView>
-        
-    );
-};
-
-export default HomeScreen;
