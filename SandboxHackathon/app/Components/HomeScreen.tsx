@@ -14,6 +14,10 @@ interface HomeScreenProps {
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
     const { user, isAuthenticated, setUser } = useUser();
 
+    const logout = () => {
+        navigation.replace("App");
+    }
+
     const updateWorkoutLevel = (level: string) => {
         if (user) {
             let newWorkoutPlan;
@@ -63,6 +67,12 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
     // }
 
     return (
+        <div>
+        <View style={{flex: 1}}>
+            <TouchableOpacity style={styles.logoutButton} onPress={logout}>
+                <Text style={styles.logoutText}>Logout</Text>
+            </TouchableOpacity>
+        </View>
         <ScrollView style={styles.scrollView} contentContainerStyle={[styles.contentContainer, {flexGrow: 1}]}>
             <AppNavbar navigation={navigation} />
             {/* Welcome Section */}
@@ -96,7 +106,7 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                 <Text style={styles.buttonText}>Update Your Profile</Text>
             </TouchableOpacity>
         </ScrollView>
-        
+        </div>
     );
 };
 

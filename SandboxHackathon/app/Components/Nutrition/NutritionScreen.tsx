@@ -74,6 +74,12 @@ export default function NutritionScreen({ navigation }: NutritionScreenProps) {
                         <TouchableOpacity style={styles.appButton} onPress={generateCheapMealPlan}>
                             <Text style={styles.appButtonText}>Generate Cheap Meal Plan</Text>
                         </TouchableOpacity>
+                        <TouchableOpacity style={styles.appButton} onPress={generateNormalMealPlan}>
+                            <Text style={styles.appButtonText}>Generate Normal Meal Plan</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.appButton} onPress={generateExpensiveMealPlan}>
+                            <Text style={styles.appButtonText}>Generate Expensive Meal Plan</Text>
+                        </TouchableOpacity>
                     </View>
                 </>
             ) : (
