@@ -41,7 +41,6 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
         if (!loginResponse.ok) {
             setIsAuthenticated(false);
             alert("Invalid username or password");
-            navigation.navigate("Register");
             return;
         } else {
             const userObject = await loginResponse.json(); // Parse JSON response

@@ -12,7 +12,7 @@ interface HomeScreenProps {
 }
 
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
-    const { user, isAuthenticated, setUser } = useUser();
+    const { user, isAuthenticated, setUser , setIsAuthenticated} = useUser();
 
     const updateWorkoutLevel = (level: string) => {
         if (user) {
@@ -51,10 +51,15 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         }
     };
 
+    const handleLogout = () => {
+        setIsAuthenticated(false);
+        navigation.navigate('App')
+    }
+
     return (
         <View style={{ flex: 1 }}>
     <   View style={styles.headerContainer}>
-        <TouchableOpacity onPress={() => navigation.navigate('App')} style={styles.logoutButton}>
+        <TouchableOpacity onPress={handleLogout} style={styles.logoutButton}>
             <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
         </View>

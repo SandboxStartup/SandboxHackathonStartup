@@ -28,10 +28,12 @@ app.post("/api/createUser", async (req: any, res: any) => {
     }
     if (await getUser(_name) !== null) {
         res.status(401).send("User already exists");
+        return
     } else {
         let userObj = new User(_name, _age, _weight, _height, _level, _workoutPlan, _nutritionPlan);
         const [user, token, password] = await createUser(userObj, _password);
         res.send("User created successfully!");
+        return;
     }
 });
 
@@ -67,6 +69,7 @@ app.post("/api/update/nutritionPlan", async (req: any, res: any) => {
 app.post("/api/login/user", async (req: any, res: any) => {
     if (await authenticateUser(req.body.userName, req.body.password) === null) {
         res.status(401).send("Invalid username or password");
+        return;
     }
     let user = await getUser(req.body.userName);
     res.send(user);
@@ -75,6 +78,7 @@ app.post("/api/login/user", async (req: any, res: any) => {
 app.post("/api/authUser",async (req: any, res: any) => {
     if (await authenticateUser(req.body.userName, req.body.password) === null) {
         res.status(401).send("Not authenticated");
+        return
     }
     res.send("Authenticated");
 });

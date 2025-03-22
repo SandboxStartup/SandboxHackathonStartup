@@ -2,9 +2,9 @@ import {User} from "@/app/Classes/User";
 import {MongoClient} from 'mongodb';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
-import config from "./secret/dbConfig.json";
 import {BeginnerWorkoutPlan, IntermediateWorkoutPlan, WorkoutPlan } from "@/app/Classes/WorkoutPlan";
 import {NutritionPlan} from "@/app/Classes/NutritionPlan";
+const config = require('./secret/dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url, { tls: true, serverSelectionTimeoutMS: 3000, autoSelectFamily: false, });

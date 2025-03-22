@@ -27,10 +27,6 @@ interface AppScreenProps {
 
 const AppScreen = ({ navigation }: AppScreenProps) => {
 
-    const handleGoToHome = () => {
-        navigation.navigate("Home"); // Navigate to Home screen
-    };
-
     const handleGoToLogin = () => {
         navigation.navigate("Login"); // Navigate to Login screen
     };
@@ -49,11 +45,6 @@ const AppScreen = ({ navigation }: AppScreenProps) => {
             <View>
                 <Text style={styles.title}>Welcome to Intelifit</Text>
                 <Text style={styles.subtitle}>Your personal fitness assistant</Text>
-
-                <TouchableOpacity style={styles.appButton} onPress={handleGoToHome}>
-                    <Text style={styles.appButtonText}>Home</Text>
-                </TouchableOpacity>
-
                 <TouchableOpacity style={styles.appButton} onPress={handleGoToRegister}>
                     <Text style={styles.appButtonText}>Register</Text>
                 </TouchableOpacity>

@@ -1,7 +1,7 @@
 import {User} from "@/app/Classes/User";
 
 import {MongoClient} from 'mongodb';
-import config from './secret/dbConfig.json';
+import config from './secret/dbConfig.json.json';
 import {createUser, getUser, logoutUser, getUserByToken, updateUserNutritionPlan, updateUserWorkoutPlan} from "./database"
 import {BeginnerWorkoutPlan} from "@/app/Classes/WorkoutPlan";
 import {NutritionPlan} from "@/app/Classes/NutritionPlan";
