@@ -105,7 +105,6 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 40,
         borderRadius: 30,
         marginTop: 20,
-        flex: 1
     },
     appButtonText: {
         fontSize: 18,
