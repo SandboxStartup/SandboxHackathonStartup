@@ -105,6 +105,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: 40,
         borderRadius: 30,
         marginTop: 20,
+        flex: 1
     },
     appButtonText: {
         fontSize: 18,
@@ -156,6 +157,23 @@ export const styles = StyleSheet.create({
     form: {
         width: '100%',
         alignItems: 'center',
+    },
+    logoutButton: {
+        position: 'absolute',
+        top: 10,
+        right: 10,
+        padding: 10,
+        backgroundColor: '#FFA726',
+        borderRadius: 30,
+    },
+    logoutText: {
+        color: 'white',
+    },
+    headerContainer: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        padding: 10,
+        backgroundColor: '#f0f0f0', // Optional background color
     },
     exerciseContainer: {
         backgroundColor: '#f9f9f9',

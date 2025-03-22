@@ -14,10 +14,6 @@ interface HomeScreenProps {
 const HomeScreen = ({ navigation }: HomeScreenProps) => {
     const { user, isAuthenticated, setUser } = useUser();
 
-    const logout = () => {
-        navigation.replace("App");
-    }
-
     const updateWorkoutLevel = (level: string) => {
         if (user) {
             let newWorkoutPlan;
@@ -55,19 +51,15 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
         }
     };
 
-    // if (!user) {
-    //     return (
-    //         <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
-    //             <AppNavbar navigation={navigation} />
-    //             <View>
-    //                 <Text>Welcome, Guest</Text>
-    //             </View>
-    //         </ScrollView>
-    //     );
-    // }
-
     return (
-        <ScrollView style={styles.scrollView} contentContainerStyle={[styles.contentContainer, {flexGrow: 1}]}>
+        <View style={{ flex: 1 }}>
+    <   View style={styles.headerContainer}>
+        <TouchableOpacity onPress={() => navigation.navigate('App')} style={styles.logoutButton}>
+            <Text style={styles.logoutText}>Logout</Text>
+        </TouchableOpacity>
+        </View>
+        <View style={{height: 30}}/>
+        <ScrollView style={styles.scrollView} contentContainerStyle={[styles.contentContainer, {flexGrow: 1,}]}>
             <AppNavbar navigation={navigation} />
             {/* Welcome Section */}
             <View style={styles.header}>
@@ -100,35 +92,8 @@ const HomeScreen = ({ navigation }: HomeScreenProps) => {
                 <Text style={styles.buttonText}>Update Your Profile</Text>
             </TouchableOpacity>
         </ScrollView>
+        </View>
     );
 };
 
 export default HomeScreen;
-
-
-
-// <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
-        //     <AppNavbar navigation={navigation} />
-        //     <View>
-        //         <Text>Welcome, Guest</Text>
-        //     </View>
-        // </ScrollView>
-        // <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
-        //     <AppNavbar navigation={navigation} />
-        //     <View>
-        //         <Text>Welcome {user?.name}!</Text>
-        //     </View>
-        //     <View>
-        //         <Text>User Details:</Text>
-        //         <Text>Name: {user?.name}</Text>
-        //         <Text>Age: {user?.age}</Text>
-        //         <Text>Weight: {user?.weight} lbs</Text>
-        //         <Text>Height: {user?.height} inches</Text>
-        //         <Text>Level: {user?.level}</Text>q
-        //         <Button title="Change Workout Plan to Beginner" onPress={() => updateWorkoutLevel("Beginner")} />
-        //         <Button title="Change Workout Plan to Intermediate" onPress={() => updateWorkoutLevel("Intermediate")} />
-        //         <Button title="Change Workout Plan to Advanced" onPress={() => updateWorkoutLevel("Advanced")} />
-        //         <Text>Change Weight:</Text>
-        //         <TextInput placeholder="Enter Weight" keyboardType="default" onChangeText={(text) => updateWeight(text)} />
-        //     </View>
-        // </ScrollView>
