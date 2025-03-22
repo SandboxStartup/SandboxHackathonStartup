@@ -30,23 +30,22 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
     }, [isAuthenticated]);
 
     const handleLogin = async () => {
+        const loginResponse = await fetch('http://192.168.86.25:3000/api/login/user', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userName, password }), // Send data correctly
+        });
 
-            const loginResponse = await fetch('http://10.54.2.5:3000/api/login/user', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userName, password }), // Send data correctly
-            });
-
-            if (!loginResponse.ok) {
-                setIsAuthenticated(false);
-                alert("Invalid username or password");
-                navigation.navigate("Register");
-                return;
-            }
-            else{
-                const userObject = await loginResponse.json(); // Parse JSON response
+        if (!loginResponse.ok) {
+            setIsAuthenticated(false);
+            alert("Invalid username or password");
+            navigation.navigate("Register");
+            return;
+        } else {
+            const userObject = await loginResponse.json(); // Parse JSON response
+            if (userObject._name && userObject._age && userObject._weight && userObject._height && userObject._level && userObject._workoutPlan && userObject._nutritionPlan) {
                 const newUser = new User(
                     userObject._name,
                     userObject._age,
@@ -59,8 +58,11 @@ export default function LoginScreen({ navigation }: LoginScreenProps) {
 
                 setUser(newUser);
                 setIsAuthenticated(true);
+            } else {
+                setIsAuthenticated(false);
+                alert("Invalid user data received");
             }
-
+        }
     }
 
     if (isAuthenticated && !user) {

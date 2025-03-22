@@ -3,7 +3,7 @@ import {MongoClient} from 'mongodb';
 import bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import config from "./secret/dbConfig.json";
-import { WorkoutPlan } from "@/app/Classes/WorkoutPlan";
+import {BeginnerWorkoutPlan, IntermediateWorkoutPlan, WorkoutPlan } from "@/app/Classes/WorkoutPlan";
 import {NutritionPlan} from "@/app/Classes/NutritionPlan";
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
@@ -78,7 +78,7 @@ export async function createUser(user: User, password: string): Promise<[User, s
         _level: user.level,
         _workoutPlan: user.workoutPlan,
         _nutritionPlan: user.nutritionPlan,
-        token: "token",
+        token: token,
         password: passwordHash
     };
     await userCollection.insertOne(userPlusToken);
@@ -88,7 +88,7 @@ export async function createUser(user: User, password: string): Promise<[User, s
 export async function authenticateUser(name: string, password: string) {
     const userDoc = await userCollection.findOne({ _name: name });
     if (!userDoc) return null;
-    const valid = await bcrypt.compare(password, userDoc._password);
+    const valid = await bcrypt.compare(password, userDoc.password);
     if (!valid) return null;
     const token = uuidv4();
     await userCollection.updateOne({ _name: name }, { $set: { token: token } });

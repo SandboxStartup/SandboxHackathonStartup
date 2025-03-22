@@ -2,7 +2,7 @@ import {awaitExpression} from "@babel/types";
 
 const express = require("express");
 const cors = require("cors");
-import { User } from "@/app/Classes/User";
+import { User } from "../app/Classes/User";
 import {
     createUser,
     getUser,
