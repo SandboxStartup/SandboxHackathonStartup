@@ -45,6 +45,10 @@ const AppScreen = ({ navigation }: AppScreenProps) => {
             <View>
                 <Text style={styles.title}>Welcome to Intelifit</Text>
                 <Text style={styles.subtitle}>Your personal fitness assistant</Text>
+<<<<<<< HEAD
+=======
+
+>>>>>>> a70f25834ba238bd85495e0b5ab3d1608f7422fd
                 <TouchableOpacity style={styles.appButton} onPress={handleGoToRegister}>
                     <Text style={styles.appButtonText}>Register</Text>
                 </TouchableOpacity>
